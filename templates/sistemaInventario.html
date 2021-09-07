@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<title>Sistema de inventario</title>
+{% endblock %}
+
+{% block content %} 
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+      <ol>
+        <li><a href="{{url_for('home')}}">Home</a></li>
+      </ol>
+      <h2>Calcular Sistema de inventario</h2>
+
+    </div>
+  </section><!-- End Breadcrumbs -->
+  <div class="container">
+	<div class="section-title">
+	  </div>
+<div class="container">
+    <div class="card">
+        <form method="POST" action="{{url_for('calcularSistemaInventario')}}"><br>
+            <div class="container">
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault01">Demanda (D)</label>
+                        <input name="demanda" type="number" step="any" class="form-control" id="validationDefault01" placeholder="Ejemplo:12000"  required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault02">Costo de ordenar (Co)</label>
+                        <input name="costoOrdenar" type="number" step="any" class="form-control" id="validationDefault02"placeholder="Ejemplo:25"   required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault01">Costo de mantenimiento (Ch)</label>
+                        <input name="costoMantenimiento" type="number" step="any" class="form-control" id="validationDefault01" placeholder="Ejemplo:0.50"  required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault02">Costo del producto (P)</label>
+                        <input name="costoProducto" type="number" step="any" class="form-control" id="validationDefault02" placeholder="Ejemplo:2.50"  required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault01">Tiempo de espera (T)</label>
+                        <input name="tiempoEspera" type="number" step="any" class="form-control" id="validationDefault01" placeholder="Ejemplo:5"  required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault01">Dias/Año</label>
+                        <input name="diasAno" type="number" class="form-control" id="validationDefault01" placeholder="Ejemplo:250"  required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault01">Número iteraciones (n)</label>
+                        <input name="numeroIteraciones" type="number" class="form-control" id="validationDefault01" placeholder="Ejemplo:10"  required>
+                    </div>
+                </div>
+                <button class="btn btn-danger" type="submit">Calcular</button>
+            </div>
+        </form><br> 
+    </div>
+</div><br>
+{% endblock %}

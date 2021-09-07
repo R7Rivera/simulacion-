@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<title>Resultado del Montecarlo</title>
+{% endblock %}
+    
+{% block content %}
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+      <ol>
+        <li><a href="{{url_for('home')}}">Home</a></li>
+      </ol>
+      <h2> Resultado del Montecarlo</h2>
+
+    </div>
+  </section><!-- End Breadcrumbs --> 
+
+
+<div class="section-title">
+    <br>
+    <h2>Formulario de Datos</h2>
+  </div>
+<div class="container">
+
+    <div class="card">
+        <form enctype="multipart/form-data" method="POST" action="{{url_for('calcularMontecarlo')}}"><br>
+            <div class="col-sm-12">
+                <div class="container">
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="exampleFormControlFile1">Entrada del archivo (.xlsx)</label>
+                        <input name="file" type="file" class="form-control-file form-data" id="exampleFormControlFile1" required>
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                          El archivo Excel debe de contener dos columnas, una columna "Período" (ej: 2016, 2017, 2018, ...) y una columna "Promedio" que haga referencia al período en que se encuentra (ej: 5501.0, 6232.7, 8118.3, ...). Puede descargar la plantilla de ejemplo dando clic en el botón "Descargar plantilla".
+                        </small>
+                    </div>                  
+                </div>
+
+                <div class="form-row">
+                    <legend class="text-center header">Método congruencial lineal</legend><br>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault01">Número iteraciones</label>
+                        <input name="numeroIteraciones" type="number" class="form-control" id="validationDefault01"  required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault02">Semilla</label>
+                        <input name="semilla" type="number" class="form-control" id="validationDefault02"  required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault01">Multiplicador</label>
+                        <input name="multiplicador" type="number" class="form-control" id="validationDefault01"  required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault02">Incremento</label>
+                        <input name="incremento" type="number" class="form-control" id="validationDefault02"  required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault01">Módulo</label>
+                        <input name="modulo" type="number" class="form-control" id="validationDefault01"  required>
+                    </div>
+                </div>    
+                <button class="btn btn-primary" type="submit">Subir</button>
+                <a class="btn btn-success float-right" href="{{url_for('static', filename='file/template4.xlsx')}}" role="button">Descargar plantilla</a>
+            </div>
+        </form><br> 
+    </div>
+</div><br>
+
+<div class="container">
+    <div class="section-title">
+		<br>
+		<h2>Gráfica </h2>
+	  </div>
+    <div class="card1">
+        <center><img src="data:image/png;base64,{{ image }}"></center>
+    </div>
+</div><br>
+
+<div class="container">
+    <div class="section-title">
+		<br>
+		<h2>Tabla de resultados </h2>
+	  </div>
+    {{data|safe}}
+</div>
+
+<div class="container">
+    <div class="section-title">
+		<br>
+		<h2>Tabla de resultados </h2>
+	  </div>
+    <a class="btn btn-success" href="{{url_for('static', filename='file/data.xlsx')}}" role="button">Exportar a Excel</a>
+    <a class="btn btn-secondary" href="{{url_for('static', filename='file/data.csv')}}" role="button">Exportar a csv</a>
+</div><br>
+
+<div class="container">
+    {{data2|safe}}
+</div>
+{% endblock %}
+<br><br>
